@@ -190,7 +190,7 @@ shinyServer(function(input, output) {
             ungroup() %>% 
             as.data.frame() %>% 
             compute_intervals_values(data$suppliers) %>% 
-            mutate(timestamp = as.POSIXct(ceiling_date(as.Date(timestamp), unit = "month")-1), tz = Sys.timezone())
+            mutate(timestamp = as.POSIXct(floor_date(as.Date(timestamp), unit = "month")), tz = Sys.timezone())
         
         coeff <- max(d$cost, na.rm = T) / max(d$usage, na.rm = T)
         
