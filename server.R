@@ -224,13 +224,12 @@ shinyServer(function(input, output) {
             slice(1, n()) %>%
             data.frame()
         
-        interval <-
-            as.integer(as.Date(d$timestamp[2]) - as.Date(d$timestamp[1]))
+        interval <- as.integer(as.Date(d$timestamp[2]) - as.Date(d$timestamp[1]))
         usage <- d$reading[2] - d$reading[1]
         
         infoBox(
             title = "Daily Usage",
-            value = paste(format(usage, nsmall = 1, big.mark=","), "KWh"),
+            value = paste(format(usage / interval, nsmall = 1, big.mark=","), "KWh"),
             icon = icon("bolt"),
             width = "100%"
         )
